@@ -16,11 +16,7 @@
             </div>
         </div>
         <div class="mt-4 flex items-center text-sm">
-            <span class="text-green-500 font-medium flex items-center">
-                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                12%
-            </span>
-            <span class="text-gray-500 dark:text-gray-400 ml-2">from last month</span>
+            <span class="text-gray-500 dark:text-gray-400">Excluding cancelled orders</span>
         </div>
     </div>
 

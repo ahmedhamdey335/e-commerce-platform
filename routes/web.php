@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\CheckoutController;
+use App\Http\Controllers\Web\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -34,8 +35,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 
+    // Order History Routes
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+
     // Seller Routes
-    Route::middleware('can:isSeller')->prefix('seller')->name('seller.')->group(function () {
+    Route::middleware(['role:seller'])->prefix('seller')->name('seller.')->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Web\Seller\DashboardController::class, 'index'])->name('dashboard');
         // Placeholders for products and orders
         Route::get('/products', function() { return 'Seller Products'; })->name('products.index');
@@ -43,7 +48,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Admin Routes
-    Route::middleware('can:isAdmin')->prefix('admin')->name('admin.')->group(function () {
+    Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Web\Admin\DashboardController::class, 'index'])->name('dashboard');
         // Placeholders
         Route::get('/products', function() { return 'Admin Products'; })->name('products.index');
