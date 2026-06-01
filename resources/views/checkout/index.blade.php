@@ -9,7 +9,7 @@
             <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Checkout</h1>
         </div>
 
-        <form action="{{ url('/checkout') }}" method="POST" class="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
+        <form action="{{ route('checkout.store') }}" method="POST" class="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
             @csrf
             
             <!-- Checkout Form -->

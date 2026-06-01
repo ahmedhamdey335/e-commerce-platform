@@ -47,7 +47,7 @@
                                 <div class="relative flex justify-between">
                                     <div>
                                         <h3 class="text-base font-medium text-gray-900 dark:text-white">
-                                            <a href="{{ url('/products/'.$item->product->id) }}">{{ $item->product->name }}</a>
+                                            <a href="{{ route('products.show', ['id' => $item->product->id]) }}">{{ $item->product->name }}</a>
                                         </h3>
                                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Sold by: {{ $item->product->seller->name ?? 'Unknown' }}</p>
                                     </div>
@@ -55,7 +55,7 @@
                                 </div>
 
                                 <div class="mt-4 flex-1 flex items-end justify-between">
-                                    <form action="{{ url('/cart/'.$item->id) }}" method="POST" class="flex items-center space-x-3">
+                                    <form action="{{ route('cart.update', ['id' => $item->id]) }}" method="POST" class="flex items-center space-x-3">
                                         @csrf
                                         @method('PUT')
                                         <label for="quantity-{{ $item->id }}" class="sr-only">Quantity</label>
@@ -65,7 +65,7 @@
                                         <button type="submit" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">Update</button>
                                     </form>
 
-                                    <form action="{{ url('/cart/'.$item->id) }}" method="POST">
+                                    <form action="{{ route('cart.destroy', ['id' => $item->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-sm font-medium text-rose-600 hover:text-rose-500 transition-colors">
@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="mt-8">
-                    <a href="{{ url('/checkout') }}" class="w-full bg-indigo-600 border border-transparent rounded-xl shadow-lg shadow-indigo-500/30 py-4 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5 flex justify-center items-center">
+                    <a href="{{ route('checkout.index') }}" class="w-full bg-indigo-600 border border-transparent rounded-xl shadow-lg shadow-indigo-500/30 py-4 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5 flex justify-center items-center">
                         Proceed to Checkout
                     </a>
                 </div>
@@ -117,7 +117,7 @@
             <svg class="mx-auto h-20 w-20 text-gray-300 dark:text-gray-600 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Your cart is empty</h3>
             <p class="text-gray-500 dark:text-gray-400 mb-8 max-w-sm mx-auto">Looks like you haven't added anything to your cart yet. Browse our products and discover great deals.</p>
-            <a href="{{ url('/products') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5">
+            <a href="{{ route('products.index') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5">
                 Start Shopping
             </a>
         </div>

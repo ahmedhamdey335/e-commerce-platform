@@ -20,15 +20,27 @@ class CheckRole
                 return response()->json(['message' => 'Unauthenticated.'], 401);
             }
 
-            return redirect()->route('login');
+            // Preserve intended URL for web users so Laravel can redirect after login
+            return redirect()->guest(route('login'));
         }
 
-        if (!in_array($request->user()->role, $roles)) {
+        // Normalize roles and user role to be case-insensitive
+        $allowedRoles = array_map('strtolower', $roles);
+        $userRole = strtolower($request->user()->role ?? '');
+
+        if (!in_array($userRole, $allowedRoles, true)) {
             if ($request->expectsJson()) {
                 return response()->json(['message' => 'You do not have permission.'], 403);
             }
 
-            abort(403, 'You do not have permission.');
+            // Prefer redirecting back with a user-friendly flash message for web requests.
+            // If no referer is available, send the user to the home page.
+            $redirect = redirect()->back();
+            if (!$request->headers->has('referer')) {
+                $redirect = redirect()->route('home');
+            }
+
+            return $redirect->with('error', 'You do not have permission to access this page.');
         }
 
         return $next($request);

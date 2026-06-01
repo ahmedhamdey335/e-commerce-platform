@@ -10,7 +10,7 @@
             <p class="text-gray-500 dark:text-gray-400">Join us to start shopping today.</p>
         </div>
 
-        <form method="POST" action="{{ url('/register') }}" class="space-y-5">
+        <form method="POST" action="{{ route('register') }}" class="space-y-5">
             @csrf
 
             <!-- Name -->
@@ -67,7 +67,7 @@
 
         <p class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
             Already have an account?
-            <a href="{{ url('/login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">Sign in</a>
+            <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">Sign in</a>
         </p>
     </div>
 </div>

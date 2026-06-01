@@ -18,13 +18,13 @@
                 <h3 class="font-bold text-gray-900 dark:text-white mb-4">Categories</h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="{{ url('/products') }}" class="block px-2 py-1.5 text-sm rounded-lg {{ !request('category') ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 font-medium' : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors' }}">
+                        <a href="{{ route('products.index') }}" class="block px-2 py-1.5 text-sm rounded-lg {{ !request('category') ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 font-medium' : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors' }}">
                             All Categories
                         </a>
                     </li>
                     @foreach($categories as $category)
                     <li>
-                        <a href="{{ url('/products?category='.$category->slug) }}" class="block px-2 py-1.5 text-sm rounded-lg {{ request('category') === $category->slug ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 font-medium' : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors' }}">
+                        <a href="{{ route('products.index', ['category' => $category->slug]) }}" class="block px-2 py-1.5 text-sm rounded-lg {{ request('category') === $category->slug ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 font-medium' : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors' }}">
                             {{ $category->name }}
                         </a>
                     </li>
@@ -32,7 +32,7 @@
                 </ul>
 
                 <h3 class="font-bold text-gray-900 dark:text-white mb-4 mt-8">Search</h3>
-                <form action="{{ url('/products') }}" method="GET">
+                <form action="{{ route('products.index') }}" method="GET">
                     @if(request('category'))
                         <input type="hidden" name="category" value="{{ request('category') }}">
                     @endif
@@ -59,13 +59,13 @@
                                 <svg class="w-16 h-16 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                             @endif
                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity flex items-center justify-center">
-                                <a href="{{ url('/products/'.$product->id) }}" class="opacity-0 group-hover:opacity-100 bg-white text-gray-900 text-sm font-medium px-4 py-2 rounded-lg shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all">View Details</a>
+                                <a href="{{ route('products.show', ['id' => $product->id]) }}" class="opacity-0 group-hover:opacity-100 bg-white text-gray-900 text-sm font-medium px-4 py-2 rounded-lg shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all">View Details</a>
                             </div>
                         </div>
                         <div class="p-4 flex-1 flex flex-col">
                             <div class="flex justify-between items-start mb-1">
                                 <h3 class="text-base font-bold text-gray-900 dark:text-white truncate pr-2">
-                                    <a href="{{ url('/products/'.$product->id) }}">
+                                    <a href="{{ route('products.show', ['id' => $product->id]) }}">
                                         <span aria-hidden="true" class="absolute inset-0 z-0"></span>
                                         {{ $product->name }}
                                     </a>
@@ -86,7 +86,7 @@
                                         <span class="text-rose-500 font-medium">Out of Stock</span>
                                     @endif
                                 </span>
-                                <form action="{{ url('/cart/add') }}" method="POST">
+                                <form action="{{ route('cart.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="quantity" value="1">
@@ -111,7 +111,7 @@
                     <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No products found</h3>
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Try adjusting your search or filter to find what you're looking for.</p>
                     <div class="mt-6">
-                        <a href="{{ url('/products') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <a href="{{ route('products.index') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Clear filters
                         </a>
                     </div>

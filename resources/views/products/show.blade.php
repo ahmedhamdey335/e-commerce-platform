@@ -8,11 +8,11 @@
         <!-- Breadcrumbs -->
         <nav class="flex text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="Breadcrumb">
             <ol class="flex items-center space-x-2">
-                <li><a href="{{ url('/') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Home</a></li>
+                <li><a href="{{ route('home') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Home</a></li>
                 <li>
                     <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
                 </li>
-                <li><a href="{{ url('/products') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Products</a></li>
+                <li><a href="{{ route('products.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Products</a></li>
                 <li>
                     <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
                 </li>
@@ -60,7 +60,7 @@
                     <h3 class="text-sm font-medium text-gray-900 dark:text-white mb-2">Categories</h3>
                     <div class="flex flex-wrap gap-2">
                         @foreach($product->categories as $category)
-                            <a href="{{ url('/products?category='.$category->slug) }}" class="inline-flex items-center px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <a href="{{ route('products.index', ['category' => $category->slug]) }}" class="inline-flex items-center px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                                 {{ $category->name }}
                             </a>
                         @endforeach
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="mt-10 flex">
-                    <form action="{{ url('/cart/add') }}" method="POST" class="w-full flex gap-4">
+                    <form action="{{ route('cart.store') }}" method="POST" class="w-full flex gap-4">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         
@@ -126,7 +126,7 @@
                     @else
                         <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     @endif
-                    <a href="{{ url('/products/'.$related->id) }}" class="absolute inset-0 z-10"><span class="sr-only">View {{ $related->name }}</span></a>
+                    <a href="{{ route('products.show', ['id' => $related->id]) }}" class="absolute inset-0 z-10"><span class="sr-only">View {{ $related->name }}</span></a>
                 </div>
                 <div class="p-4 flex-1 flex flex-col">
                     <h3 class="text-sm font-medium text-gray-900 dark:text-white truncate">{{ $related->name }}</h3>

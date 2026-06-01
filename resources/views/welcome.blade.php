@@ -18,12 +18,12 @@
                     </p>
                     <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                         <div class="rounded-md shadow">
-                            <a href="{{ url('/products') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 transition-all transform hover:-translate-y-1 shadow-lg shadow-indigo-500/30">
+                            <a href="{{ route('products.index') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 transition-all transform hover:-translate-y-1 shadow-lg shadow-indigo-500/30">
                                 Shop Now
                             </a>
                         </div>
                         <div class="mt-3 sm:mt-0 sm:ml-3">
-                            <a href="{{ url('/products') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/30 hover:bg-indigo-200 dark:hover:bg-indigo-900/50 md:py-4 md:text-lg md:px-10 transition-colors">
+                            <a href="{{ route('products.index') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/30 hover:bg-indigo-200 dark:hover:bg-indigo-900/50 md:py-4 md:text-lg md:px-10 transition-colors">
                                 View Categories
                             </a>
                         </div>
@@ -61,13 +61,13 @@
                         <svg class="w-20 h-20 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     @endif
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity flex items-center justify-center">
-                        <a href="{{ url('/products/'.$product->id) }}" class="opacity-0 group-hover:opacity-100 bg-white text-gray-900 font-medium px-4 py-2 rounded-lg shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all">View Details</a>
+                        <a href="{{ route('products.show', ['id' => $product->id]) }}" class="opacity-0 group-hover:opacity-100 bg-white text-gray-900 font-medium px-4 py-2 rounded-lg shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all">View Details</a>
                     </div>
                 </div>
                 <div class="p-5 flex-1 flex flex-col">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="text-lg font-bold text-gray-900 dark:text-white truncate pr-4">
-                            <a href="{{ url('/products/'.$product->id) }}">
+                            <a href="{{ route('products.show', ['id' => $product->id]) }}">
                                 <span aria-hidden="true" class="absolute inset-0 z-0"></span>
                                 {{ $product->name }}
                             </a>
@@ -83,7 +83,7 @@
                                 <span class="text-rose-500 font-medium">Out of Stock</span>
                             @endif
                         </span>
-                        <form action="{{ url('/cart/add') }}" method="POST">
+                        <form action="{{ route('cart.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="quantity" value="1">
@@ -98,7 +98,7 @@
         </div>
         
         <div class="mt-12 text-center">
-            <a href="{{ url('/products') }}" class="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-xl text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-600 transition-colors">
+            <a href="{{ route('products.index') }}" class="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-xl text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-600 transition-colors">
                 View all products
             </a>
         </div>

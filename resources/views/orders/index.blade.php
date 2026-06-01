@@ -42,7 +42,7 @@
                             @endif">
                             {{ ucfirst($order->status) }}
                         </span>
-                        <a href="{{ url('/orders/'.$order->id) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors">
+                        <a href="{{ route('orders.show', ['id' => $order->id]) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors">
                             View details →
                         </a>
                     </div>
@@ -87,7 +87,7 @@
             </svg>
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">No orders yet</h3>
             <p class="text-gray-500 dark:text-gray-400 mb-8 max-w-sm mx-auto">You haven't placed any orders yet. Start shopping to see your orders here.</p>
-            <a href="{{ url('/products') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5">
+            <a href="{{ route('products.index') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5">
                 Start Shopping
             </a>
         </div>

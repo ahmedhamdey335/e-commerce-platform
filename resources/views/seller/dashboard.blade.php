@@ -44,7 +44,7 @@
 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
     <div class="px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
         <h2 class="text-lg font-medium text-gray-900 dark:text-white">Recent Orders</h2>
-        <a href="{{ url('/seller/orders') }}" class="text-sm text-teal-600 dark:text-teal-400 hover:underline">View all</a>
+        <a href="{{ route('seller.orders.index') }}" class="text-sm text-teal-600 dark:text-teal-400 hover:underline">View all</a>
     </div>
     
     <div class="overflow-x-auto">
