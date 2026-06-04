@@ -60,6 +60,29 @@
     </div>
 </div>
 
+<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-10">
+    <a href="{{ route('admin.orders.index') }}" class="block rounded-3xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 hover:border-indigo-400 transition-colors shadow-sm">
+        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Orders</p>
+        <p class="mt-4 text-2xl font-semibold text-gray-900 dark:text-white">Manage orders</p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">View all orders and update fulfillment status.</p>
+    </a>
+    <a href="{{ route('admin.products.index') }}" class="block rounded-3xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 hover:border-purple-400 transition-colors shadow-sm">
+        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Products</p>
+        <p class="mt-4 text-2xl font-semibold text-gray-900 dark:text-white">Manage catalog</p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Edit product listings and monitor marketplace inventory.</p>
+    </a>
+    <a href="{{ route('admin.categories.index') }}" class="block rounded-3xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 hover:border-teal-400 transition-colors shadow-sm">
+        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Categories</p>
+        <p class="mt-4 text-2xl font-semibold text-gray-900 dark:text-white">Organize tags</p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Create and manage category hierarchy.</p>
+    </a>
+    <a href="{{ route('admin.users.index') }}" class="block rounded-3xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 hover:border-orange-400 transition-colors shadow-sm">
+        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Users</p>
+        <p class="mt-4 text-2xl font-semibold text-gray-900 dark:text-white">Manage accounts</p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Review customer and seller accounts.</p>
+    </a>
+</div>
+
 <!-- Recent Orders Table -->
 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
     <div class="px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">

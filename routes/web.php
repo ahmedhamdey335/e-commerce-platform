@@ -16,7 +16,9 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 // Authentication Routes
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'create'])->name('login');
-    Route::post('/login', [AuthController::class, 'store']);
+    Route::get('/seller/login', [AuthController::class, 'createSeller'])->name('seller.login');
+    Route::get('/admin/login', [AuthController::class, 'createAdmin'])->name('admin.login');
+    Route::post('/login', [AuthController::class, 'store'])->name('login.store');
     Route::get('/register', [AuthController::class, 'registerView'])->name('register');
     Route::post('/register', [AuthController::class, 'registerStore']);
 });
@@ -42,18 +44,16 @@ Route::middleware('auth')->group(function () {
     // Seller Routes
     Route::middleware(['role:seller'])->prefix('seller')->name('seller.')->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Web\Seller\DashboardController::class, 'index'])->name('dashboard');
-        // Placeholders for products and orders
-        Route::get('/products', function() { return 'Seller Products'; })->name('products.index');
-        Route::get('/orders', function() { return 'Seller Orders'; })->name('orders.index');
+        Route::get('/products', [\App\Http\Controllers\Web\Seller\DashboardController::class, 'products'])->name('products.index');
+        Route::get('/orders', [\App\Http\Controllers\Web\Seller\DashboardController::class, 'orders'])->name('orders.index');
     });
 
     // Admin Routes
     Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Web\Admin\DashboardController::class, 'index'])->name('dashboard');
-        // Placeholders
-        Route::get('/products', function() { return 'Admin Products'; })->name('products.index');
-        Route::get('/categories', function() { return 'Admin Categories'; })->name('categories.index');
-        Route::get('/orders', function() { return 'Admin Orders'; })->name('orders.index');
-        Route::get('/users', function() { return 'Admin Users'; })->name('users.index');
+        Route::get('/products', [\App\Http\Controllers\Web\Admin\DashboardController::class, 'products'])->name('products.index');
+        Route::get('/categories', [\App\Http\Controllers\Web\Admin\DashboardController::class, 'categories'])->name('categories.index');
+        Route::get('/orders', [\App\Http\Controllers\Web\Admin\DashboardController::class, 'orders'])->name('orders.index');
+        Route::get('/users', [\App\Http\Controllers\Web\Admin\DashboardController::class, 'users'])->name('users.index');
     });
 });

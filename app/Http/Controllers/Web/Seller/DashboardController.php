@@ -36,4 +36,30 @@ class DashboardController extends Controller
 
         return view('seller.dashboard', compact('totalProducts', 'totalOrders', 'totalRevenue', 'recentOrders'));
     }
+
+    public function products(Request $request)
+    {
+        $user = Auth::user();
+
+        $products = Product::with('categories')
+            ->where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+        return view('seller.products', compact('products'));
+    }
+
+    public function orders(Request $request)
+    {
+        $user = Auth::user();
+
+        $orders = Order::whereHas('items.product', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->with(['items.product', 'user'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+        return view('seller.orders', compact('orders'));
+    }
 }

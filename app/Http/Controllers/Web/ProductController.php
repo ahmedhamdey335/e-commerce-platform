@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,6 +16,14 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $query = Product::with('categories');
+
+        $seller = null;
+
+        if ($request->has('seller')) {
+            $sellerId = $request->seller;
+            $seller = User::find($sellerId);
+            $query->where('user_id', $sellerId);
+        }
 
         // Apply category filter if present
         if ($request->has('category')) {
@@ -33,7 +42,7 @@ class ProductController extends Controller
         $products = $query->paginate(12)->withQueryString();
         $categories = Category::all();
 
-        return view('products.index', compact('products', 'categories'));
+        return view('products.index', compact('products', 'categories', 'seller'));
     }
 
     /**

@@ -30,18 +30,23 @@
             </a>
         </div>
 
+        @php
+            $sellerActive = request()->routeIs('seller.dashboard');
+            $sellerProductsActive = request()->routeIs('seller.products.*');
+            $sellerOrdersActive = request()->routeIs('seller.orders.*');
+        @endphp
         <div class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-            <a href="{{ route('seller.dashboard') }}" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-teal-600 bg-teal-50 dark:bg-teal-500/10 dark:text-teal-400">
+            <a href="{{ route('seller.dashboard') }}" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-colors {{ $sellerActive ? 'text-teal-600 bg-teal-50 dark:bg-teal-500/10 dark:text-teal-400' : 'text-gray-700 hover:text-teal-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700' }}">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                 Dashboard
             </a>
             
-            <a href="{{ route('seller.products.index') }}" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-700 hover:text-teal-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700 transition-colors">
+            <a href="{{ route('seller.products.index') }}" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-colors {{ $sellerProductsActive ? 'text-teal-600 bg-teal-50 dark:bg-teal-500/10 dark:text-teal-400' : 'text-gray-700 hover:text-teal-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700' }}">
                 <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                 My Products
             </a>
 
-            <a href="{{ route('seller.orders.index') }}" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-700 hover:text-teal-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700 transition-colors">
+            <a href="{{ route('seller.orders.index') }}" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-colors {{ $sellerOrdersActive ? 'text-teal-600 bg-teal-50 dark:bg-teal-500/10 dark:text-teal-400' : 'text-gray-700 hover:text-teal-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700' }}">
                 <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                 Order Fulfillment
             </a>
@@ -73,16 +78,14 @@
     <!-- Main Content -->
     <main class="flex-1 ml-64 flex flex-col min-h-screen">
         <!-- Top header for mobile and general actions -->
-        <header class="h-16 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-6 sticky top-0 z-10">
+        <header class="h-16 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 flex items-center px-6 sticky top-0 z-10">
             <h1 class="text-xl font-semibold text-gray-800 dark:text-white">
-                @yield('header', 'Seller Dashboard')
+                @yield('header', 'Seller Control Room')
             </h1>
-            <div class="flex items-center gap-4">
-                <a href="{{ route('home') }}" class="text-sm text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 font-medium">View Storefront</a>
-            </div>
         </header>
 
         <div class="p-6 flex-1">
+            @include('partials.flash-messages')
             @yield('content')
         </div>
     </main>

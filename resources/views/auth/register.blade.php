@@ -60,9 +60,7 @@
                        class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
             </div>
 
-            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transform hover:-translate-y-0.5 mt-2">
-                Create Account
-            </button>
+            <x-ui.button type="submit" class="w-full justify-center mt-2">Create Account</x-ui.button>
         </form>
 
         <p class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
