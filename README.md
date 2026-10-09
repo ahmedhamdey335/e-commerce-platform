@@ -13,7 +13,7 @@ A role-based e-commerce REST API built with **Laravel 12**. It supports product 
 - **Orders** — Role-specific order listing; admin status updates
 - **Addresses** — Customer shipping address CRUD
 - **Authorization** — `CheckRole` middleware + Laravel Policies (`Product`, `Order`, `Address`)
-- **API docs** — Scribe-generated documentation at `/docs`
+- **API docs** — Project documentation is available in the `docs/` directory
 - **Tests** — Feature tests for endpoints; unit tests for policies
 
 ## Tech Stack
@@ -24,7 +24,7 @@ A role-based e-commerce REST API built with **Laravel 12**. It supports product 
 | PHP | 8.2+ |
 | Auth | Laravel Sanctum |
 | Database | MySQL |
-| API docs | [Scribe](https://scribe.knuckles.wtf/laravel) |
+| API docs | Project docs in `docs/` |
 | HTTP testing | PHPUnit 11 |
 
 ## User Roles
